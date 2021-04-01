@@ -1,0 +1,15 @@
+plugins {
+    id 'war'
+}
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+group = 'info.serdroid.smyrna'
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.13'
+}
