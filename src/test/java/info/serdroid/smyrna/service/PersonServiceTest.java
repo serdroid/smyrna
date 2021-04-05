@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
+import info.serdroid.smyrna.data.HardCodedPersonStore;
 import info.serdroid.smyrna.model.Person;
 
 public class PersonServiceTest {
@@ -12,12 +13,7 @@ public class PersonServiceTest {
 		String personId = "123";
 		PersonService service = new PersonService();
 		Person person = service.getPerson(personId);
-		Person expected = new Person();
-		expected.setId(personId);
-		expected.setName("ali");
-		expected.setSurname("al");
-		expected.setEmail("ali.al@example.com");
-		
+		Person expected = HardCodedPersonStore.PEOPLE[0];
 		assertThat(person).isEqualTo(expected);
 	}
 

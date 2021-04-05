@@ -8,6 +8,16 @@ public class Person {
 	private String surname;
 	private String email;
 
+	public Person() {}
+	
+	public Person(String id, String name, String surname, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+	}
+	
 	public String getId() {
 		return id;
 	}
