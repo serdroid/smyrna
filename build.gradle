@@ -17,4 +17,7 @@ dependencies {
 	testImplementation group: 'junit', name: 'junit', version: '4.13' 
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.15.0'
 	testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.28'
+	testImplementation group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '3.4.3'
+	 
 }

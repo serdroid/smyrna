@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>smyrna</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+function ajaxCall(url, paramsObj, callback){
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			if(callback){
+				callback(xmlhttp.responseText);
+			}
+		} else if (xmlhttp.readyState == 4){
+			progressClose();
+			hataGoster("common.loginFailure");
+		}
+	}
+	var paramStr = "";
+	for(var key in paramsObj){
+		if(typeof paramsObj[key] === "string"){
+			paramStr += key + "=" + encodeURIComponent(paramsObj[key])+"&"; 
+		}else{
+			paramStr += key + "=" + encodeURIComponent(JSON.stringify(paramsObj[key]))+"&"; 
+		}
+	}
+	
+	xmlhttp.open("POST", url, true);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send(paramStr);
+}
+
+function loadPerson() {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var elem = document.getElementById("person");
+			elem.value = xmlhttp.responseText;
+		} else if (xmlhttp.readyState == 4){
+			var elem = document.getElementById("error");
+			elem.innerHTML = xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("GET", "/smyrna/rest/person/123", true);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+	xmlhttp.send();
+	
+}
+</script>
+    </head>
+    <body>
+        <div>smyrna</div>
+        <div>
+		<input type="text" id="person" />
+		<button id="bload" onclick="loadPerson(); return false;">Load</button>
+		<input type="text" id="error" />
+        </div>
+    </body>
+</html>
