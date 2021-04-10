@@ -50,10 +50,15 @@ function loadPerson() {
 </script>
     </head>
     <body>
-        <div>smyrna</div>
+        <p>smyrna</p>
         <div>
-		<input type="text" id="person" />
+		<label for="person">Person : </label>
+		<textarea id="person" name="person" rows="4" cols="50">
+		</textarea>
+		<br/>        
 		<button id="bload" onclick="loadPerson(); return false;">Load</button>
+		<br/>        
+		<label for="error">Hata : </label>
 		<input type="text" id="error" />
         </div>
     </body>
