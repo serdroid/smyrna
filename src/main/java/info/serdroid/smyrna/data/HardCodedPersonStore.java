@@ -26,6 +26,10 @@ public class HardCodedPersonStore {
 					new JobItem(generateRandomString(), "Devops Engineer", LocalDate.of(2010, 2, 2), LocalDate.of(2016, 3, 1)), 
 					new JobItem(generateRandomString(), "Senior Devops Engineer", LocalDate.of(2016, 3, 10), null)
 					)),
+			new JobHistory(PEOPLE[2].getId(), Arrays.asList(
+					new JobItem(generateRandomString(), "UI Designer", LocalDate.of(2019, 2, 2), LocalDate.of(2020, 10, 30)), 
+					new JobItem(generateRandomString(), "UI Designer", LocalDate.of(2020, 11, 1), LocalDate.of(2021, 3, 30)) 
+					)),
 	};
 	
 	public static String generateRandomString() {
