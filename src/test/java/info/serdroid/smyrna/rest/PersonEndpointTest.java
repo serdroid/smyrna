@@ -1,7 +1,6 @@
 package info.serdroid.smyrna.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
 
 import javax.ws.rs.core.Response;
 
