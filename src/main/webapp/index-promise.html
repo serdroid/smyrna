@@ -34,14 +34,28 @@ function setElemenetValue(id, value) {
 	elem.value = value;
 }	
 
-function loadPerson() {
-    makeRequest('GET', '/smyrna/rest/person/123')
-	.then(resp => setPerson(resp) )
+function loadAll() {
+    loadPerson()
+	.then(resp => loadHistory(resp) )
+	.then(resp => setHistory(resp) )
 	.catch(setError);
+}
+
+function loadPerson() {
+    return makeRequest('GET', '/smyrna/rest/person/123');
+}
+
+function loadHistory(resp) {
+	setPerson(resp);
+    return makeRequest('GET', '/smyrna/rest/person/history/123');
 }
 
 function setPerson(resp) {
     setElemenetValue("person", resp);
+}
+
+function setHistory(resp) {
+    setElemenetValue("history", resp);
 }
 
 function setError(err) {
@@ -57,7 +71,12 @@ function setError(err) {
 		<textarea id="person" name="person" rows="4" cols="50">
 		</textarea>
 		<br/>        
-		<button id="bload" onclick="loadPerson(); return false;">Load</button>
+		<label for="history">Job History : </label>
+		<textarea id="history" name="history" rows="8" cols="50">
+		</textarea>
+		<br/>        
+		<br/>        
+		<button id="bload" onclick="loadAll(); return false;">Load</button>
 		<br/>        
 		<label for="error">Hata : </label>
 		<input type="text" id="error" />
