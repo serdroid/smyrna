@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>smyrna</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+function makeRequest (method, url, done) {
+    return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.onload = function () {
+      if (this.status >= 200 && this.status < 300) {
+        resolve(xhr.response);
+      } else {
+        reject({
+          status: this.status,
+          statusText: xhr.statusText
+        });
+      }
+    };
+    xhr.onerror = function () {
+      reject({
+        status: this.status,
+        statusText: xhr.statusText
+      });
+    };
+    xhr.send();
+  });
+}
+
+function setElemenetValue(id, value) {
+	var elem = document.getElementById(id);
+	elem.value = value;
+}	
+
+function loadAll() {
+	loadSeq().catch(setError);
+}
+
+const loadSeq = async _ => {
+    const person = await loadPerson()
+    setPerson(person)
+    const history = await loadHistory()
+	setHistory(history)
+}
+
+async function loadPerson() {
+    return makeRequest('GET', '/smyrna/rest/person/123');
+}
+
+const loadHistory = async () => {
+    return makeRequest('GET', '/smyrna/rest/person/history/123');
+}
+
+function setPerson(resp) {
+    setElemenetValue("person", resp);
+}
+
+function setHistory(resp) {
+    setElemenetValue("history", resp);
+}
+
+function setError(err) {
+    setElemenetValue("error", err.statusText);
+}
+
+</script>
+    </head>
+    <body>
+        <p>smyrna</p>
+        <div>
+		<label for="person">Person : </label>
+		<textarea id="person" name="person" rows="4" cols="50">
+		</textarea>
+		<br/>        
+		<label for="history">Job History : </label>
+		<textarea id="history" name="history" rows="8" cols="50">
+		</textarea>
+		<br/>        
+		<br/>        
+		<button id="bload" onclick="loadAll(); return false;">Load</button>
+		<br/>        
+		<label for="error">Hata : </label>
+		<input type="text" id="error" />
+        </div>
+    </body>
+</html>
