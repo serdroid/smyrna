@@ -30,6 +30,10 @@ public class HardCodedPersonStore {
 					new JobItem(generateRandomString(), "UI Designer", LocalDate.of(2019, 2, 2), LocalDate.of(2020, 10, 30)), 
 					new JobItem(generateRandomString(), "UI Designer", LocalDate.of(2020, 11, 1), LocalDate.of(2021, 3, 30)) 
 					)),
+			new JobHistory(PEOPLE[3].getId(), Arrays.asList(
+					new JobItem(generateRandomString(), "Recruiter", LocalDate.of(2015, 1, 2), LocalDate.of(2020, 1, 5)), 
+					new JobItem(generateRandomString(), "Lead Recruiter", LocalDate.of(2020, 1, 6), LocalDate.of(2021, 3, 31)) 
+					)),
 	};
 	
 	public static String generateRandomString() {

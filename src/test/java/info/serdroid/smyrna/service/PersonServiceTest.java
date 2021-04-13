@@ -57,7 +57,7 @@ public class PersonServiceTest {
 		LocalDate today = LocalDate.of(2021, 4, 10);
 		List<JobHistory> histories = Arrays.asList( HardCodedPersonStore.ALL_HISTORIES );
 		long months = service.calculateTotalExperience(histories, today);
-		assertThat(months).isEqualTo(265);
+		assertThat(months).isEqualTo(339);
 	}
 
 
