@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class PersonServiceTest {
 	public void getJobHistory() {
 		String personId = "123";
 		PersonService service = new PersonService();
-		JobHistory jobHistory = service.getJobHistory(personId);
+		JobHistory jobHistory = service.getJobHistory(personId).orElse(new JobHistory(personId, Collections.emptyList()));
 		JobHistory expected = HardCodedPersonStore.ALL_HISTORIES[0];
 		assertThat(jobHistory).isEqualTo(expected);
 	}

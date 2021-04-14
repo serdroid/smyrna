@@ -2,6 +2,8 @@ package info.serdroid.smyrna.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+
 import javax.ws.rs.core.Response;
 
 import org.junit.Rule;
@@ -41,7 +43,7 @@ public class PersonEndpointTest {
 	@Test
 	public void getJobHistory() {
 		String personId = "123";
-		Mockito.when(personService.getJobHistory(personId)).thenReturn(HardCodedPersonStore.ALL_HISTORIES[0]);
+		Mockito.when(personService.getJobHistory(personId)).thenReturn(Optional.of( HardCodedPersonStore.ALL_HISTORIES[0]) );
 		Response response = personEndpoint.getJobHistory(personId);
 		JobHistory jobHistory = response.readEntity(JobHistory.class);
 		JobHistory expected = HardCodedPersonStore.ALL_HISTORIES[0];

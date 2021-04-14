@@ -1,5 +1,7 @@
 package info.serdroid.smyrna.rest;
 
+import java.util.Collections;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -35,7 +37,7 @@ public class PersonEndpoint {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getJobHistory(@PathParam("id") String personId) {
-		JobHistory jobHistory = service.getJobHistory(personId);
+		JobHistory jobHistory = service.getJobHistory(personId).orElse(new JobHistory(personId, Collections.emptyList()));
 		return Response.ok(jobHistory).build();
 	}
 

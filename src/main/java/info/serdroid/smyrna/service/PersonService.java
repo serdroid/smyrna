@@ -3,6 +3,7 @@ package info.serdroid.smyrna.service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -29,19 +30,19 @@ public class PersonService {
 		return HardCodedPersonStore.PEOPLE[0];
 	}
 
-	public JobHistory getJobHistory(String personId) {
+	public Optional<JobHistory> getJobHistory(String personId) {
 		logger.debug("getting JobHistory for : {}", personId);
 		return getJobHistoryAsync(personId);
 	}
 	
-	private JobHistory getJobHistoryAsync(String personId) {
+	private Optional<JobHistory> getJobHistoryAsync(String personId) {
 		Future<JobHistory> future = fixedThreadPool.submit(find(personId));
 		try {
-			return future.get();
+			return Optional.of(future.get());
 		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
+			logger.warn("Couldn't get job history", e);
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	Callable<JobHistory> find(String personId) {
